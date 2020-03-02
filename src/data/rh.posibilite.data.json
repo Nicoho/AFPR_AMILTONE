@@ -1,0 +1,14 @@
+[
+  {
+    "id_posibiliti": 1,
+    "posibilite": ["2"]
+  },
+  {
+    "id_posibiliti": 2,
+    "posibilite": ["4"]
+  },
+  {
+    "id_posibiliti": 3,
+    "posibilite": ["8"]
+  }
+]

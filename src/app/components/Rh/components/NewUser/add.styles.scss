@@ -1,0 +1,52 @@
+@import "../../../../../scss/mixin.scss";
+@import "../../../../../scss/variable.scss";
+
+.register-add {
+  background: #f8f9fa;
+  height: 100vh;
+  width: 80%;
+  .register-heading-add {
+    text-align: center;
+    font-size: 3em;
+    color: #495057;
+  }
+  .register-form-add {
+    margin: 0 auto;
+    width: 90%;
+    text-align: center;
+    input {
+      padding: 5px;
+      height: 50px;
+      width: 100%;
+      border: none;
+      margin-left: 5px;
+      font-size: 20px;
+      &:focus {
+        outline-style: none !important;
+      }
+    }
+    select {
+      height: 50px;
+      width: 100%;
+      border: none;
+      margin-left: 5px;
+      font-size: 20px;
+      &:focus {
+        outline-style: none !important;
+      }
+    }
+    .btn {
+      @include btn-blue;
+      img {
+        width: 50px;
+        margin-right: 10px;
+        span {
+          display: inline-block;
+        }
+      }
+      &:hover {
+        background-color: #ce3089;
+      }
+    }
+  }
+}

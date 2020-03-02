@@ -1,0 +1,26 @@
+@import "../../../../scss/variable.scss";
+@import "../../../../scss/mixin.scss";
+.Rh {
+  .navigation {
+    text-align: center;
+    color: $white;
+    width: 20%;
+    height: 100%;
+    .btn {
+      @include btn-white;
+      width: 90%;
+    }
+    .btn:hover {
+      background-color: $pinkHover;
+    }
+    img {
+      margin: 5% auto;
+      width: 70%;
+    }
+    p {
+      font-weight: lighter;
+      padding: 12%;
+      margin-top: -9%;
+    }
+  }
+}
