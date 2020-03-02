@@ -1,11 +1,21 @@
-import React from 'react';
-
+import React, { useState } from 'react';
 import './login.styles.scss'
-
-const Login = () => {
+const Login = ({ switchRoute }) => {
+    const [state, setState] = useState("")
+    const handleSubmit = () => {
+        if (state === "") {
+            switchRoute("user")
+        } else {
+            switchRoute(state)
+        }
+    }
     return (
         <div className="Login">
-            <p>Login works</p>
+            <div className="form" >
+
+                <input type="text" className="" placeholder="USER" onChange={e => setState(e.target.value)} />
+                <button onClick={() => handleSubmit()}>Connexion</button>
+            </div>
         </div>
     )
 }

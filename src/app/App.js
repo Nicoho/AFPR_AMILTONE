@@ -1,24 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./app.style.scss";
-import Rh from "./components/Rh/Rh.index";
-import Admin from "./components/Admin/Admin.index";
-import Userindex from "./components/User/Userindex";
+import Login from "./components/Login/login";
+import MyRoute from "./myRoute";
 
 function App() {
+  const [state, setState] = useState({
+    isLog: false,
+    role: ""
+  });
+
+  const switchRoute = role => {
+    switch (role) {
+      case "rh":
+        setState({ role: "rh", isLog: true });
+        break;
+      case "admin":
+        setState({ role: "admin", isLog: true });
+        break;
+      case "user":
+        setState({ role: "user", isLog: true });
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <BrowserRouter>
       <div className="App">
         <Switch>
-          <Route path="/Rh">
-            <Rh />
-          </Route>
-          <Route path="/Admin">
-            <Admin />
-          </Route>
-          <Route path="/User">
-            <Userindex />
-          </Route>
+          <Route
+            exact
+            path="/"
+            render={() =>
+              state.isLog ? (
+                <MyRoute role={state.role} />
+              ) : (
+                <Login switchRoute={role => switchRoute(role)} />
+              )
+            }
+          ></Route>
         </Switch>
       </div>
     </BrowserRouter>
