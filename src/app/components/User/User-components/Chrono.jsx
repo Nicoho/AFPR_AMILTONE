@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { hourglass } from '../../../../img/import.img'
 
 
 
@@ -46,6 +47,10 @@ function Chrono({ ValidateResponse, timer, setVisible }) {
 
   return (
     <div className={`Chrono ${setTimeColor()}`} >
+
+
+      <img className='chrono_img' src={hourglass} alt='sablier' />
+
       {Math.floor(chrono / 60000).toString().replace(/^(\d)$/, '0$1')} : {(chrono % 60000 / 1000).toString().replace(/^(\d)$/, '0$1')}
     </div>
   )

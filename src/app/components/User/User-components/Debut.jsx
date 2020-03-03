@@ -20,7 +20,9 @@ function Debut({ handlePageChange, test }) {
           Assurez vous d'avoir le temps nécessaire devant vous pour le réaliser dans de bonnes conditions.
         </p>
         <p>
-          Pensez à valider vos réponses, les reponses non validées ne seront pas prises en compte.
+          Chaque question  devra être repondue dans un temps imparti.</p>
+        <p> Pensez à valider vos réponses, les reponses non validées ne seront pas prises en compte.</p>
+        <p className='important-intro'> Attention, le test commence dès la page suivante. Ne le lancez que lorsque vous êtes prêt.
         </p>
         <div className="start-btn" onClick={() => handlePageChange()}>
           <span>

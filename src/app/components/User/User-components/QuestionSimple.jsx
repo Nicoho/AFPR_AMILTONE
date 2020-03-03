@@ -30,7 +30,7 @@ function QuestionSimple({ question, ValidateResponse }) {
                 <div key={answer.id_possibilite}>
                   <label className='answer_label'>
                     <input type='checkbox' className="answer_input" value={answer.possibilite} onChange={() => getChecked(ind)} />
-                    <span className='answer_texte'>{answer.possibilite}</span>
+                    <span className={answer.isChecked ? "answerChecked-text" : "answer_text"}> {answer.possibilite}</span>
                   </label>
                 </div>
               )
@@ -38,10 +38,12 @@ function QuestionSimple({ question, ValidateResponse }) {
           }
         </div>
 
-        <div className="answer-btn" onClick={(e) => ValidateResponse(e, getResult(Answers), false)}>
-          <span>
-            valider la réponse
+        <div className="btn" onClick={(e) => ValidateResponse(e, getResult(Answers), false)}>
+          <div className="isBtn">
+            <span>
+              valider la réponse
           </span>
+          </div>
         </div>
       </form>
     </div>

@@ -70,21 +70,22 @@ const Userindex = () => {
         return 'erreur d affichage'
     }
   }
-
   return (
-    <div className="User">
-      <div className='logoAmiltone'>
-        <img src={LogoAmiltone} alt='logoAmiltone' />
-      </div>
-      <div className="Userindex container-fluid">
-        <div className='logoAmiltoneSeul'>
-          <img src={LogoAmiltoneSeul} alt='logoAmiltoneSeul' />
+    <div className='User'>
+      <div className={visible ? 'modalOpacity' : undefined}>
+        <div className='logoAmiltone'>
+          <img src={LogoAmiltone} alt='logoAmiltone' />
         </div>
-        {
-          handleComponent()
-        }
-        <TimeOutModal visible={visible} TimedOutNav={TimedOutNav} />
+        <div className="Userindex container-fluid">
+          <div className='logoAmiltoneSeul'>
+            <img src={LogoAmiltoneSeul} alt='logoAmiltoneSeul' />
+          </div>
+          {
+            handleComponent()
+          }
+        </div>
       </div>
+      <TimeOutModal visible={visible} TimedOutNav={TimedOutNav} />
     </div>
   )
 }

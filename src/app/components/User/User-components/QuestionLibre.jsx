@@ -14,12 +14,15 @@ function QuestionLibre({ ValidateResponse }) {
         <div className='reponses'>
           <input value={rep} onChange={e => getAnswer(e)} />
         </div>
-        <div className="answer-btn" onClick={(e) => ValidateResponse(e, rep, false)}>
-          <span>
-            valider la réponse
+        <div className="btn" onClick={(e) => ValidateResponse(e, rep, false)}>
+          <div className="isBtn">
+            <span>
+              valider la réponse
           </span>
+          </div>
         </div>
       </form>
+
     </div>
   )
 }
