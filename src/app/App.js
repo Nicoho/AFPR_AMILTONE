@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import "./app.style.scss";
 import Login from "./components/Login/login";
-import MyRoute from "./myRoute";
+import MyRoute from "./routes/myRoute";
+import Userindex from "./components/User/Userindex";
 
 function App() {
   const [state, setState] = useState({
@@ -41,6 +42,9 @@ function App() {
               )
             }
           ></Route>
+          <Route path="/user">
+            <Userindex />
+          </Route>
         </Switch>
       </div>
     </BrowserRouter>
