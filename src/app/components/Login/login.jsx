@@ -24,11 +24,11 @@ const Login = ({ switchRoute }) => {
                     <h2>Connexion</h2>
                     <form >
                         <div className="form-group">
-                            <label for="email">Email:</label>
+                            <label htmlFor="email">Email:</label>
                             <input type="email" className="form-control" id="email" name="email" onChange={e => setState(e.target.value)} />
                         </div>
                         <div className="form-group">
-                            <label for="pwd">Password:</label>
+                            <label htmlFor="pwd">Password:</label>
                             <input type="password" className="form-control" id="pwd" name="pwd" />
                         </div>
                         <div className="btn" onClick={() => handleSubmit()}>
