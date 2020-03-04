@@ -22,6 +22,9 @@ function App() {
       case "user":
         setState({ role: "user", isLog: true });
         break;
+      case "logout":
+        setState({ role: "", isLog: false });
+        break;
       default:
         break;
     }
@@ -36,7 +39,7 @@ function App() {
             path="/"
             render={() =>
               state.isLog ? (
-                <MyRoute role={state.role} />
+                <MyRoute logOut={role => switchRoute(role)} role={state.role} />
               ) : (
                 <Login switchRoute={role => switchRoute(role)} />
               )

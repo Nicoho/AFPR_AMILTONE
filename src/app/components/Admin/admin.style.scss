@@ -9,9 +9,18 @@
     .btn {
       @include btn-white;
       width: 90%;
+      margin-bottom: 5%;
+      &:hover {
+        background-color: $pinkHover;
+      }
     }
-    .btn:hover {
-      background-color: $pinkHover;
+    .logout {
+      @include btn-purple;
+      margin-top: 100%;
+      &:hover {
+        background-color: $white;
+        color: $silverDark;
+      }
     }
     img {
       margin: 5% auto;

@@ -4,7 +4,7 @@ import Rh from "../../app/components/Rh/Rh.index";
 import Admin from "../../app/components/Admin/Admin.index";
 import Userindex from "../../app/components/User/Userindex";
 
-const MyRoute = ({ role }) => {
+const MyRoute = ({ logOut, role }) => {
   return (
     <BrowserRouter>
       <Switch>
@@ -13,9 +13,9 @@ const MyRoute = ({ role }) => {
           path="/"
           render={() =>
             role === "rh" ? (
-              <Rh />
+              <Rh logOut={role => logOut(role)} />
             ) : role === "admin" ? (
-              <Admin />
+              <Admin logOut={role => logOut(role)} />
             ) : (
               <Userindex />
             )

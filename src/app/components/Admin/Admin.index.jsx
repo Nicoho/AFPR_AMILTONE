@@ -7,7 +7,7 @@ import CreeQuestion from './components/creeQuestion/creeQuestion';
 import CreeTest from './components/creeTest/creeTest';
 import { initialState, admin } from "../../../reducers/admin.reducer/reducer"
 
-const Admin = () => {
+const Admin = ({ logOut }) => {
     const [state, dispatch] = useReducer(admin, initialState)
 
     const CHANGE_DASH = (view) => {
@@ -32,6 +32,9 @@ const Admin = () => {
                     </div>
                     <div className="btn" onClick={() => CHANGE_DASH("creeQuestion")}>
                         <span>Crée une question</span>
+                    </div>
+                    <div className="btn logout" onClick={() => logOut("logout")}>
+                        <span>Déconnexion</span>
                     </div>
                 </div>
                 <div className="View">
