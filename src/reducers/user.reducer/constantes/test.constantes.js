@@ -4,7 +4,7 @@ const test_en_dur = {
   prenom: 'Tom',
   id_test: 1,
   langage: 'React',
-  test_level: "débutant",
+  niveau: "débutant",
   duree: 3000000,
   isEnded: false,
   questions: [
@@ -12,7 +12,7 @@ const test_en_dur = {
       id_question: 1,
       type: 'libre',
       time: 15000,
-      question: 'quelle est la 1ere lettre de l\'alphabet?',
+      question: 'En CSS, Quel élément sépare la propriété de sa valeur ?',
       possibilite: {
         id_possibilite: 1,
         possibilite: 'a',
@@ -20,30 +20,30 @@ const test_en_dur = {
     }, {
       id_question: 2,
       type: 'simple',
-      question: '1+1=',
+      question: 'Quelle est la syntaxe pour déclarer l\'encodage des caractères du document en UTF-8 ?',
       time: 60000,
       possibilite: [{
         id_possibilite: 2,
-        possibilite: 3,
+        possibilite: '<meta encoding="text/html; charset=utf-8">',
       }, {
         id_possibilite: 3,
-        possibilite: 2,
+        possibilite: '<meta charset="text/html; UTF-8">',
       }, {
         id_possibilite: 4,
-        possibilite: 8,
+        possibilite: '<meta charset="utf-8">',
       }
       ]
     }, {
       id_question: 3,
       type: 'simple',
       time: 90000,
-      question: 'Qui est le meilleur jouer de babyfoot de l\'agence?',
+      question: 'Qui est le meilleur joueur de babyfoot de l\'agence?',
       possibilite: [{
         id_possibilite: 2,
         possibilite: 'Ghena',
       }, {
         id_possibilite: 3,
-        possibilite: 'Baudoin',
+        possibilite: 'Baudouin',
       }, {
         id_possibilite: 4,
         possibilite: 'Leo',
@@ -55,24 +55,27 @@ const test_en_dur = {
     }, {
       id_question: 4,
       type: 'simple',
-      question: 'Le mec qui a goûté des huîtres pour la première fois, à quel moment il s\'est dit qu\'il allait ouvrir un truc qui ressemble à un caillou puis manger la substance visqueuse à l\'intérieur ?',
-      time: 45000,
+      question: 'Soit un conteneur "div" auquel on veut donner une largeur *visible* totale de 760 pixels. Avec quel style obtiendra-t-on ce résultat ? Note : le modèle de boite standard des CSS est bien sûr appliqué.',
+      time: 1145000,
       possibilite: [{
         id_possibilite: 2,
-        possibilite: 'hier',
+        possibilite: 'div {width: 760px; padding: 12px; border-width: 1px; margin: 0;}',
       }, {
         id_possibilite: 3,
-        possibilite: 'demain',
+        possibilite: ' div {width: 740px; padding: 1em; border-width: 0; margin: 0;}',
       }, {
         id_possibilite: 4,
-        possibilite: 'jamais mais cette question est vraiment naze',
+        possibilite: 'div {width: 720px; padding: 5px; border-width: 5px; margin: 10px;}',
+      }, {
+        id_possibilite: 5,
+        possibilite: 'div {width: 700px; padding: 29px; border-width: 1px; margin: 0;}',
       }
       ]
     }, {
       id_question: 5,
       type: 'libre',
       time: 15000,
-      question: 'Vous avez une montagne d’argent aussi haute que l’Empire State Building. Pouvez-vous tout mettre dans une pièce ?',
+      question: 'Quelle propriété  CSS utilise t\'on pour souligner du texte',
       possibilite: {
         id_possibilite: 1,
         possibilite: 'a',
