@@ -5,7 +5,10 @@ import QuestionLibre from './QuestionLibre';
 import QuestionSimple from './QuestionSimple'
 
 
-function Questionnaire({ handlePageChange, test, isEnded, ValidateResponse, setVisible }) {
+
+function Questionnaire({ test, ValidateResponse }) {
+
+
 
 
   let question = test.questions[test.indexQuestion]
@@ -26,27 +29,23 @@ function Questionnaire({ handlePageChange, test, isEnded, ValidateResponse, setV
         </div>
         <div className='answer col-md-8'>
           <div className=' questionnaire_chrono'>
-            <Chrono ValidateResponse={ValidateResponse} timer={test.timer} />
+            <Chrono ValidateResponse={(answer, visible) => ValidateResponse(answer, visible)} timer={test.timer} indexQuestion={test.indexQuestion} />
           </div>
           <div className='answer_title'>
             Votre (vos) réponse(s):
           </div>
           <div className="answers">
             {
-              type === 'libre' && <QuestionLibre ValidateResponse={ValidateResponse} />
-            }
+              type === 'libre' && <QuestionLibre ValidateResponse={(answer, visible) => ValidateResponse(answer, visible)} />}
+
             {
-              type === 'simple' && <QuestionSimple question={question} ValidateResponse={ValidateResponse} />
+              type === 'simple' && <QuestionSimple question={question} ValidateResponse={(answer, visible) => ValidateResponse(answer, visible)} />
             }
           </div>
         </div>
 
       </div>
-      <div >
-        {
-          isEnded && handlePageChange()
-        }
-      </div>
+
     </div>
   )
 

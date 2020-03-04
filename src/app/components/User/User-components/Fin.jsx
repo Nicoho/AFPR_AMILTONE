@@ -2,7 +2,7 @@ import React from 'react';
 
 
 
-function Fin({ handlePageChange }) {
+function Fin() {
 
 
 

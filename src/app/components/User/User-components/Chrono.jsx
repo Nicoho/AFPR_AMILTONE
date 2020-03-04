@@ -3,22 +3,29 @@ import { hourglass } from '../../../../img/import.img'
 
 
 
-function Chrono({ ValidateResponse, timer }) {
+function Chrono({ ValidateResponse, timer, indexQuestion }) {
   const [chrono, setChrono] = useState('')
   const [isPass, setItPass] = useState(false)
   const savedCallback = useRef();
 
   useEffect(() => {
+
     function tick() {
       savedCallback.current();
     }
     let timerfunc = setInterval(tick, 1000);
-    return () => clearInterval(timerfunc)
+    return () => {
+
+      clearInterval(timerfunc)
+    }
   }, [])
 
   useEffect(() => {
+
     setChrono(timer)
-  }, [timer])
+    setItPass(false)
+
+  }, [timer, indexQuestion])
 
 
   useEffect(() => {
@@ -32,8 +39,10 @@ function Chrono({ ValidateResponse, timer }) {
     } else if (chrono === 0 && !isPass) {
       ValidateResponse('', true)
       setItPass(true)
+
     }
   }
+  //console.log('ispass', isPass);
 
   function setTimeColor() {
     if (Math.floor(chrono / 60000) < 1) {

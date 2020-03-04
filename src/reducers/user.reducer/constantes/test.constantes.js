@@ -11,7 +11,7 @@ const test_en_dur = {
     {
       id_question: 1,
       type: 'libre',
-      time: 15000,
+      time: 5000,
       question: 'En CSS, Quel élément sépare la propriété de sa valeur ?',
       possibilite: {
         id_possibilite: 1,
@@ -21,7 +21,7 @@ const test_en_dur = {
       id_question: 2,
       type: 'simple',
       question: 'Quelle est la syntaxe pour déclarer l\'encodage des caractères du document en UTF-8 ?',
-      time: 60000,
+      time: 5000,
       possibilite: [{
         id_possibilite: 2,
         possibilite: '<meta encoding="text/html; charset=utf-8">',

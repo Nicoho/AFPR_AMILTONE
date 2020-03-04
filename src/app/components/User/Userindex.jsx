@@ -12,32 +12,30 @@ import LogoAmiltone from "../../../img/LogoAmiltone.svg"
 const Userindex = () => {
   const [state, dispatch] = useReducer(questionnaire, initialState);
   const [page, setPage] = useState(1)
-  const [testIsEnded, setTestIsEnded] = useState(false)
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    // appel API avec useParams
     dispatch({ type: 'getQuestionnaire' })
   }, [])
 
-  // useEffect(() => {
-  //   let postItem = {
-  //     id_user: state.id_user,
-  //     id_tes: state.id_test,
-  //     answers: state.answers,
-  //     isEnded: true
-  //   }
-  //   state.isEnded && console.log('fin', postItem)
-  // }, [state.isEnded, state])
+  useEffect(() => {
+    let postItem = {
+      id_user: state.id_user,
+      id_tes: state.id_test,
+      answers: state.answers,
+      isEnded: true
+    }
+    state.isEnded && console.log('fin', postItem)
+  }, [state.isEnded, state])
 
   let handlePageChange = () => {
-    page === 3 ? setPage(1) : setPage(page + 1)
+    page === 1 ? setPage(2) : setPage(1)
   }
 
   const navigateInTest = () => {
     if (state.indexQuestion === state.questions.length - 1) {
       endTest()
-      setTestIsEnded(true)
+      //setTestIsEnded(true)
     } else {
       dispatch({ type: 'setIndex' })
     }
@@ -45,13 +43,11 @@ const Userindex = () => {
 
   const endTest = () => {
     dispatch({ type: 'endTest' })
-    // console.log('endtest');
-
   }
+
   const ValidateResponse = (answer, visible) => {
     dispatch({ type: 'getAnswer', payload: answer })
     visible ? setVisible(visible) : navigateInTest()
-
   }
 
   const TimedOutNav = () => {
@@ -59,15 +55,12 @@ const Userindex = () => {
     setVisible(false)
   }
 
-
   let handleComponent = () => {
     switch (page) {
       case 1:
-        return <Debut handlePageChange={handlePageChange} test={state} />;
+        return <Debut handlePageChange={() => handlePageChange()} test={state} />;
       case 2:
-        return <Questionnaire handlePageChange={handlePageChange} test={state} ValidateResponse={ValidateResponse} isEnded={testIsEnded} />;
-      case 3:
-        return <Fin handlePageChange={handlePageChange} />;
+        return <Questionnaire handlePageChange={() => handlePageChange()} test={state} ValidateResponse={(answer, visible) => ValidateResponse(answer, visible)} isEnded={state.isEnded} />;
       default:
         return 'erreur d affichage'
     }
@@ -83,11 +76,11 @@ const Userindex = () => {
             <img src={LogoAmiltoneSeul} alt='logoAmiltoneSeul' />
           </div>
           {
-            handleComponent()
+            state.isEnded ? <Fin /> : handleComponent()
           }
         </div>
       </div>
-      <TimeOutModal visible={visible} TimedOutNav={TimedOutNav} />
+      <TimeOutModal visible={visible} TimedOutNav={() => TimedOutNav()} />
     </div>
   )
 }
