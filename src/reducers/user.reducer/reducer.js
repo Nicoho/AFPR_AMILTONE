@@ -48,7 +48,6 @@ const questionnaire = (state, action) => {
       return { ...state, error: action.payload };
     case "endTest":
       return { ...state, isEnded: true };
-
     default:
       return state;
   }

@@ -9,17 +9,16 @@ function Question({ question, ValidateResponse, answeringTime }) {
     <div className='Question container-fluid'>
       <div className='row'>
 
-        <div className='enonce  col-md-6'>
+        <div className='enonce  col-md-4'>
           <div className='question_title'>
-            Question:
-          </div>
-          {
-            question.question
-          }
-        </div >
-        <div className='reponse col-md-6'>
-          <div className='question_title'>
-            Réponse(s):
+            {
+              question.question
+            }
+          </div >
+        </div>
+        <div className='reponse col-md-8'>
+          <div className='answer_title'>
+            Votre (vos) réponse(s):
           </div>
 
           {

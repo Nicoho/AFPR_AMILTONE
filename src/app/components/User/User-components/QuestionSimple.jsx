@@ -3,34 +3,43 @@ import { setCheckedPossibilities } from '../../../../reducers/user.reducer/reduc
 
 function QuestionSimple({ question, ValidateResponse }) {
   const [Answers, setAnswers] = useState([])
+  const [Sol, setSol] = useState([])
 
   useEffect(() => {
-    setAnswers(setCheckedPossibilities(question.possibilite))
+    setSol(setCheckedPossibilities(question.possibilite))
   }, [question.possibilite])
 
-  const getChecked = (ind) => {
+
+  const getChecked = (ind, answer) => {
     let result = [...Answers]
-    result[ind].isChecked = !result[ind].isChecked
+    let solTemp = [...Sol]
+    solTemp[ind].isChecked = !Sol[ind].isChecked
+    setSol(solTemp)
+    if (Sol[ind].isChecked) {
+      result.push(answer)
+    } else {
+      result = result.filter(ans => ans !== answer)
+    }
     setAnswers(result)
   }
 
-  const getResult = (answers) => {
-    let result = answers.filter(answer => answer.isChecked).map(answer => answer.possibilite)
-    return result
+  const checkSubmit = () => {
+    ValidateResponse(Answers, false)
+    setAnswers([])
   }
-
 
   return (
     <div className='QuestionSimple'>
       <form >
         <div className='reponses'>
           {
-            Answers.map((answer, ind) => {
+            Sol.map((answer, ind) => {
               return (
-                <div key={answer.id_possibilite}>
+                <div key={answer.id_possibilite} className='answer_check'>
                   <label className='answer_label'>
-                    <input type='checkbox' className="answer_input" value={answer.possibilite} onChange={() => getChecked(ind)} />
-                    <span className='answer_texte'>{answer.possibilite}</span>
+                    <input type='checkbox' className="answer_input" checked={Sol[ind].isChecked} onChange={() => getChecked(ind, answer.possibilite)}
+                    />
+                    <span className={answer.isChecked ? "answerChecked-text" : "answer_text"} > {answer.possibilite}</span>
                   </label>
                 </div>
               )
@@ -38,10 +47,12 @@ function QuestionSimple({ question, ValidateResponse }) {
           }
         </div>
 
-        <div className="answer-btn" onClick={(e) => ValidateResponse(e, getResult(Answers), false)}>
-          <span>
-            valider la réponse
+        <div className="btn" onClick={() => checkSubmit()}>
+          <div className="isBtn">
+            <span>
+              valider la réponse
           </span>
+          </div>
         </div>
       </form>
     </div>

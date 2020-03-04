@@ -12,11 +12,9 @@ import LogoAmiltone from "../../../img/LogoAmiltone.svg"
 const Userindex = () => {
   const [state, dispatch] = useReducer(questionnaire, initialState);
   const [page, setPage] = useState(1)
-  const [isEnded, setIsEnded] = useState(false)
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    // appel API avec useParams
     dispatch({ type: 'getQuestionnaire' })
   }, [])
 
@@ -27,17 +25,17 @@ const Userindex = () => {
       answers: state.answers,
       isEnded: true
     }
-    if (state.isEnded) { console.log('fin', postItem) }
+    state.isEnded && console.log('fin', postItem)
   }, [state.isEnded, state])
 
   let handlePageChange = () => {
-    page === 3 ? setPage(1) : setPage(page + 1)
+    page === 1 ? setPage(2) : setPage(1)
   }
 
   const navigateInTest = () => {
     if (state.indexQuestion === state.questions.length - 1) {
       endTest()
-      setIsEnded(true)
+      //setTestIsEnded(true)
     } else {
       dispatch({ type: 'setIndex' })
     }
@@ -46,10 +44,10 @@ const Userindex = () => {
   const endTest = () => {
     dispatch({ type: 'endTest' })
   }
-  const ValidateResponse = (e, answer, visible) => {
+
+  const ValidateResponse = (answer, visible) => {
     dispatch({ type: 'getAnswer', payload: answer })
     visible ? setVisible(visible) : navigateInTest()
-
   }
 
   const TimedOutNav = () => {
@@ -57,34 +55,32 @@ const Userindex = () => {
     setVisible(false)
   }
 
-
   let handleComponent = () => {
     switch (page) {
       case 1:
-        return <Debut handlePageChange={handlePageChange} test={state} />;
+        return <Debut handlePageChange={() => handlePageChange()} test={state} />;
       case 2:
-        return <Questionnaire handlePageChange={handlePageChange} test={state} ValidateResponse={ValidateResponse} isEnded={isEnded} setVisible={setVisible} />;
-      case 3:
-        return <Fin handlePageChange={handlePageChange} />;
+        return <Questionnaire handlePageChange={() => handlePageChange()} test={state} ValidateResponse={(answer, visible) => ValidateResponse(answer, visible)} isEnded={state.isEnded} />;
       default:
         return 'erreur d affichage'
     }
   }
-
   return (
-    <div className="User">
-      <div className='logoAmiltone'>
-        <img src={LogoAmiltone} alt='logoAmiltone' />
-      </div>
-      <div className="Userindex container-fluid">
-        <div className='logoAmiltoneSeul'>
-          <img src={LogoAmiltoneSeul} alt='logoAmiltoneSeul' />
+    <div className='User'>
+      <div className={visible ? 'modalOpacity' : undefined}>
+        <div className='logoAmiltone'>
+          <img src={LogoAmiltone} alt='logoAmiltone' />
         </div>
-        {
-          handleComponent()
-        }
-        <TimeOutModal visible={visible} TimedOutNav={TimedOutNav} />
+        <div className="Userindex container-fluid">
+          <div className='logoAmiltoneSeul'>
+            <img src={LogoAmiltoneSeul} alt='logoAmiltoneSeul' />
+          </div>
+          {
+            state.isEnded ? <Fin /> : handleComponent()
+          }
+        </div>
       </div>
+      <TimeOutModal visible={visible} TimedOutNav={() => TimedOutNav()} />
     </div>
   )
 }

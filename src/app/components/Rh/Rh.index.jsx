@@ -8,7 +8,7 @@ import Modal from './components/modal/modal';
 import listLogo from '../../../img/list.svg'
 import listAdd from '../../../img/add.svg'
 import logo from '../../../img/Logo.svg'
-const Rh = () => {
+const Rh = ({ logOut }) => {
     const [state, dispatch] = useReducer(rh, initialState)
     useEffect(() => {
         dispatch({ type: "GET_ALL_USER" })
@@ -45,6 +45,9 @@ const Rh = () => {
                     <div className="btn" onClick={() => CHANGE_DASH("add")} >
                         <span><img alt="add" src={listAdd} /></span>
                         <span>Ajouter un candidat</span>
+                    </div>
+                    <div className="btn logout" onClick={() => logOut("logout")} >
+                        <span>Déconnexion</span>
                     </div>
                 </div>
                 {/* view list or view add */}
