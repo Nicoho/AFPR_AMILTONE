@@ -31,8 +31,11 @@ const Login = ({ switchRoute }) => {
                             <label htmlFor="pwd">Password:</label>
                             <input type="password" className="form-control" id="pwd" name="pwd" />
                         </div>
-                        <div className="btn" onClick={() => handleSubmit()}>
-                            <span>connexion</span>
+                        <div className="login">
+
+                            <div className="btn" onClick={() => handleSubmit()}>
+                                <span>connexion</span>
+                            </div>
                         </div>
                     </form>
                 </div>

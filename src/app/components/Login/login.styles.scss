@@ -47,3 +47,16 @@
     }
   }
 }
+@import "../../../scss/mixin.scss";
+.Login {
+  .LoginContente {
+    .container {
+      .login {
+        text-align: center;
+        .btn {
+          @include btn-blue;
+        }
+      }
+    }
+  }
+}
