@@ -34,7 +34,7 @@ const ListUser = ({ state, CHANGE_DASH, GET_ID_USER }) => {
                     <tbody>
                         {state.userList.map((user, i) => {
                             return (
-                                <tr onClick={() => getUserDetails(user.id)}>
+                                <tr onClick={() => getUserDetails(user.id)} key={i}>
                                     <td ><p>{user.lastname}</p></td>
                                     <td ><p>{user.firstname}</p></td>
                                     <td ><p>{user.email}</p></td>

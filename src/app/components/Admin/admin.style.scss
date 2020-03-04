@@ -9,9 +9,11 @@
     .btn {
       @include btn-white;
       width: 90%;
+      margin-bottom: 5%;
     }
-    .btn:hover {
-      background-color: $pinkHover;
+    .logout {
+      @include btn-purple;
+      margin-top: 100%;
     }
     img {
       margin: 5% auto;
