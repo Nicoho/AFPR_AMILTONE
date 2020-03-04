@@ -28,10 +28,12 @@
   padding: 0 20px;
   background: $blue;
   font-size: 25px;
+  font-weight: 700;
   color: $whiteSmothe;
   transition: all 0.2s ease-in-out;
-  text-align: left;
+  text-align: center;
   line-height: 50px;
+  cursor: pointer;
   img {
     width: 50px;
     margin-right: 10px;
@@ -64,5 +66,13 @@
   &:hover {
     background-color: $white;
     color: $silverDark;
+
+  span {
+    display: inline-block;
+  }
+
+  &:hover {
+    background-color: $pink;
+    color: white;
   }
 }
