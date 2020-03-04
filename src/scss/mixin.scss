@@ -67,12 +67,13 @@
     background-color: $white;
     color: $silverDark;
 
-  span {
-    display: inline-block;
-  }
+    span {
+      display: inline-block;
+    }
 
-  &:hover {
-    background-color: $pink;
-    color: white;
+    &:hover {
+      background-color: $pink;
+      color: white;
+    }
   }
 }
