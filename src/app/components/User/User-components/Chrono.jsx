@@ -3,8 +3,9 @@ import { hourglass } from '../../../../img/import.img'
 
 
 
-function Chrono({ ValidateResponse, timer, setVisible }) {
+function Chrono({ ValidateResponse, timer }) {
   const [chrono, setChrono] = useState('')
+  const [isPass, setItPass] = useState(false)
   const savedCallback = useRef();
 
   useEffect(() => {
@@ -24,11 +25,13 @@ function Chrono({ ValidateResponse, timer, setVisible }) {
     savedCallback.current = callback
   })
 
-  function callback(e) {
+
+  function callback() {
     if (chrono > 0) {
       setChrono(chrono - 1000)
-    } else {
-      ValidateResponse(e, '', true)
+    } else if (chrono === 0 && !isPass) {
+      ValidateResponse('', true)
+      setItPass(true)
     }
   }
 

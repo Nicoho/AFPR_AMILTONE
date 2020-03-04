@@ -12,7 +12,7 @@ import LogoAmiltone from "../../../img/LogoAmiltone.svg"
 const Userindex = () => {
   const [state, dispatch] = useReducer(questionnaire, initialState);
   const [page, setPage] = useState(1)
-  const [isEnded, setIsEnded] = useState(false)
+  const [testIsEnded, setTestIsEnded] = useState(false)
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -20,15 +20,15 @@ const Userindex = () => {
     dispatch({ type: 'getQuestionnaire' })
   }, [])
 
-  useEffect(() => {
-    let postItem = {
-      id_user: state.id_user,
-      id_tes: state.id_test,
-      answers: state.answers,
-      isEnded: true
-    }
-    if (state.isEnded) { console.log('fin', postItem) }
-  }, [state.isEnded, state])
+  // useEffect(() => {
+  //   let postItem = {
+  //     id_user: state.id_user,
+  //     id_tes: state.id_test,
+  //     answers: state.answers,
+  //     isEnded: true
+  //   }
+  //   state.isEnded && console.log('fin', postItem)
+  // }, [state.isEnded, state])
 
   let handlePageChange = () => {
     page === 3 ? setPage(1) : setPage(page + 1)
@@ -37,7 +37,7 @@ const Userindex = () => {
   const navigateInTest = () => {
     if (state.indexQuestion === state.questions.length - 1) {
       endTest()
-      setIsEnded(true)
+      setTestIsEnded(true)
     } else {
       dispatch({ type: 'setIndex' })
     }
@@ -45,8 +45,10 @@ const Userindex = () => {
 
   const endTest = () => {
     dispatch({ type: 'endTest' })
+    // console.log('endtest');
+
   }
-  const ValidateResponse = (e, answer, visible) => {
+  const ValidateResponse = (answer, visible) => {
     dispatch({ type: 'getAnswer', payload: answer })
     visible ? setVisible(visible) : navigateInTest()
 
@@ -63,7 +65,7 @@ const Userindex = () => {
       case 1:
         return <Debut handlePageChange={handlePageChange} test={state} />;
       case 2:
-        return <Questionnaire handlePageChange={handlePageChange} test={state} ValidateResponse={ValidateResponse} isEnded={isEnded} setVisible={setVisible} />;
+        return <Questionnaire handlePageChange={handlePageChange} test={state} ValidateResponse={ValidateResponse} isEnded={testIsEnded} />;
       case 3:
         return <Fin handlePageChange={handlePageChange} />;
       default:

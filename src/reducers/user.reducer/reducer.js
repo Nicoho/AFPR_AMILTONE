@@ -47,7 +47,10 @@ const questionnaire = (state, action) => {
     case "apiCallError":
       return { ...state, error: action.payload };
     case "endTest":
-      return { ...state, isEnded: true };
+      let sub = { ...state, isEnded: true };
+      console.log(sub);
+
+      return state
 
     default:
       return state;

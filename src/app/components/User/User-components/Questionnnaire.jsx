@@ -7,8 +7,10 @@ import QuestionSimple from './QuestionSimple'
 
 function Questionnaire({ handlePageChange, test, isEnded, ValidateResponse, setVisible }) {
 
+
   let question = test.questions[test.indexQuestion]
   let type = question.type
+
   return (
     <div className='Questionnaire container-fluid'>
       <div className='row'>
@@ -24,7 +26,7 @@ function Questionnaire({ handlePageChange, test, isEnded, ValidateResponse, setV
         </div>
         <div className='answer col-md-8'>
           <div className=' questionnaire_chrono'>
-            <Chrono ValidateResponse={ValidateResponse} timer={test.timer} setVisible={setVisible} />
+            <Chrono ValidateResponse={ValidateResponse} timer={test.timer} />
           </div>
           <div className='answer_title'>
             Votre (vos) réponse(s):
