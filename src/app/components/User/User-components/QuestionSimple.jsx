@@ -35,7 +35,7 @@ function QuestionSimple({ question, ValidateResponse }) {
           {
             Sol.map((answer, ind) => {
               return (
-                <div key={answer.id_possibilite} >
+                <div key={answer.id_possibilite} className='answer_check'>
                   <label className='answer_label'>
                     <input type='checkbox' className="answer_input" checked={Sol[ind].isChecked} onChange={() => getChecked(ind, answer.possibilite)}
                     />

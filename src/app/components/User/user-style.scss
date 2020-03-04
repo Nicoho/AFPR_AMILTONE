@@ -129,24 +129,29 @@
               flex-direction: column;
               .reponses {
                 height: 45vh;
-                .answer_label {
-                  height: 40px;
-                  cursor: pointer;
+                .answer_check {
+                  .answer_label {
+                    width: 98%;
+                    background-color: #ededed;
+                    padding-left: 10px;
+                    height: 40px;
+                    cursor: pointer;
 
-                  .answer_input {
-                    margin-top: 14px;
-                    margin-right: 10px;
-                  }
+                    .answer_input {
+                      margin-top: 14px;
+                      margin-right: 10px;
+                    }
 
-                  .answer_text {
-                    font-weight: 100;
+                    .answer_text {
+                      font-weight: 100;
 
-                    font-size: 20px;
-                  }
-                  .answerChecked-text {
-                    font-weight: 700;
+                      font-size: 20px;
+                    }
+                    .answerChecked-text {
+                      font-weight: 700;
 
-                    font-size: 20px;
+                      font-size: 20px;
+                    }
                   }
                 }
               }
