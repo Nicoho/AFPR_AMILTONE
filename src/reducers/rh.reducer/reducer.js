@@ -1,3 +1,6 @@
+import Axios from 'axios'
+
+
 const initialState = {
   dashbord: "list",
   modalVisibel: false,
@@ -24,4 +27,14 @@ const rh = (state, action) => {
   }
 };
 
-export { initialState, rh };
+// recupere les info user
+const getUser = (userID) => {
+  return Axios.get(`http://192.168.1.52:5000/users/${userID}`);
+};
+
+// recupere tout les resultat user
+const getUserResult = (userID) => {
+  return Axios.get(`http://192.168.1.52:5000/users/${userID}/result`);
+}
+
+export { initialState, rh, getUser, getUserResult };
