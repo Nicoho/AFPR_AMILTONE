@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios'
 import "./historique.styles.scss"
+import { back, down } from "../../../../../img/icon/logo"
 const HistoriqueUser = ({ state, CHANGE_DASH, SET_MODAL_VISIBLE }) => {
     let [localState, setLocalState] = useState({
         result: [],
@@ -30,6 +31,7 @@ const HistoriqueUser = ({ state, CHANGE_DASH, SET_MODAL_VISIBLE }) => {
             <div className="dashbord">
                 <div className="userInfo">
                     <div onClick={() => CHANGE_DASH("list")}>
+                        <img src={back} alt="back" width="18px" />
                         <span> Retour </span>
                     </div>
                     <span className="Nom">Nom : {user.lastname}</span>
