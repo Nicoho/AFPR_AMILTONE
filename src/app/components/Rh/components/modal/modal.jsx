@@ -6,16 +6,16 @@ import BodyModal from './body.modal';
 import HeaderModal from './header.modal';
 import FooterModal from './footer.modal';
 
-const myModal = ({ SET_MODAL_VISIBLE, state }) => {
+const myModal = ({ CLOSE_MODAL, state }) => {
     return (
         <Modal
             className="inModal"
             isOpen={state.modalVisibel}
-            onRequestClose={SET_MODAL_VISIBLE}>
+            onRequestClose={CLOSE_MODAL}>
             <div className="inModal">
-                <HeaderModal test={state.detailInModal} user={state.userDetails} />
-                <BodyModal responce={state.detailInModal.reponse_user} questions={state.detailInModal.questions} />
-                <FooterModal close={() => SET_MODAL_VISIBLE()} />
+                <HeaderModal test={state.detailInModal.test} user={state.detailInModal.user} />
+                <BodyModal />
+                <FooterModal close={() => CLOSE_MODAL()} />
             </div>
         </Modal>
     )

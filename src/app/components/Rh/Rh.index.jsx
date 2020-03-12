@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer } from 'react';
 import "./styles//rh.styles.scss"
 import { initialState, rh } from "../../../reducers/rh.reducer/reducer"
 import AddNewUser from './components/NewUser/addNewUser';
@@ -8,31 +8,30 @@ import Modal from './components/modal/modal';
 import listLogo from '../../../img/list.svg'
 import listAdd from '../../../img/add.svg'
 import logo from '../../../img/Logo.svg'
+
 const Rh = ({ logOut }) => {
     const [state, dispatch] = useReducer(rh, initialState)
-    useEffect(() => {
-        dispatch({ type: "GET_ALL_USER" })
-    }, [])
-
+    // set l'id user pour recuper les donne
     const GET_ID_USER = (userId) => {
-        dispatch({ type: "GET_DETAILS_USER", payload: userId })
+        dispatch({ type: "SET_ID_USER", payload: userId })
     }
-
+    // func pour ouvrire la modal & set les data user
+    const SET_MODAL_VISIBLE = ({ test, user }) => {
+        dispatch({ type: "DETAILS_IN_MODAL", payload: { test, user } })
+        dispatch({ type: "SET_MODAL_VISIBLE", payload: true })
+    }
+    // func pour fermez modal
+    const CLOSE_MODAL = () => {
+        dispatch({ type: "SET_MODAL_VISIBLE", payload: false })
+    }
+    // change de vue OK !!!
     const CHANGE_DASH = (view) => {
         dispatch({ type: "CHANGE_DASH", payload: view })
     }
-
-    const SET_MODAL_VISIBLE = (userTestId) => {
-        if (userTestId !== "") {
-            dispatch({ type: "DETAILS_IN_MODAL", payload: userTestId })
-        }
-        dispatch({ type: "SET_MODAL_VISIBLE", payload: !state.modalVisibel })
-    }
-
+    // ajoute nouveau useer OK!!!
     const ADD_NEW_USER = (data) => {
         dispatch({ type: "ADD_NEW_USER", payload: data })
     }
-
     return (
         <div className="container-fluid Rh">
             <div className="row">
@@ -50,17 +49,17 @@ const Rh = ({ logOut }) => {
                         <span>Déconnexion</span>
                     </div>
                 </div>
-                {/* view list or view add */}
                 {
                     state.dashbord === "list" &&
+                    // vue liste tout les utilisateur OK!!!
                     <ListUser
-                        state={state}
                         CHANGE_DASH={(view) => CHANGE_DASH(view)}
                         GET_ID_USER={(userId) => GET_ID_USER(userId)}
                     />
                 }
                 {
                     state.dashbord === "add" &&
+                    // vue ajoute nouveau utilisateur OK!!!
                     <AddNewUser
                         ADD_NEW_USER={(data) => ADD_NEW_USER(data)}
                     />
@@ -70,14 +69,12 @@ const Rh = ({ logOut }) => {
                     <HistoriqueUser
                         state={state}
                         CHANGE_DASH={(view) => CHANGE_DASH(view)}
-                        SET_MODAL_VISIBLE={(usertestId) => SET_MODAL_VISIBLE(usertestId)}
+                        SET_MODAL_VISIBLE={({ test, user }) => SET_MODAL_VISIBLE({ test, user })}
                     />
                 }
-
-                <Modal state={state} SET_MODAL_VISIBLE={() => SET_MODAL_VISIBLE()} />
+                <Modal state={state} CLOSE_MODAL={() => CLOSE_MODAL()} />
             </div >
         </div>
     )
 }
-
 export default Rh;

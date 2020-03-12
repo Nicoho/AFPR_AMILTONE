@@ -1,31 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios'
 import "./historique.styles.scss"
 const HistoriqueUser = ({ state, CHANGE_DASH, SET_MODAL_VISIBLE }) => {
-    const user = state.userDetails
-    const userTest = state.userDetailsTest
+    let [localState, setLocalState] = useState({
+        result: [],
+        user: []
+    })
+
+    useEffect(() => {
+        Axios.all([getUser(), getUserResult()])
+            .then(Axios.spread((user, res) => {
+                setLocalState({ user: user.data[0], result: res.data })
+            }));
+    }, [state.userID])
+
+    // recupere les info user
+    const getUser = () => {
+        return Axios.get(`http://192.168.1.52:5000/users/${state.userID}`);
+    }
+
+    // recupere tout les resultat user
+    const getUserResult = () => {
+        return Axios.get(`http://192.168.1.52:5000/users/${state.userID}/result`);
+    }
+    const user = localState.user
+    const userTest = localState.result
     return (
         <div className="details">
             <div className="dashbord">
-                {/* info user */}
                 <div className="userInfo">
-                    <div className="btn" onClick={() => CHANGE_DASH("list")}>
+                    <div onClick={() => CHANGE_DASH("list")}>
                         <span> Retour </span>
                     </div>
                     <span className="Nom">Nom : {user.lastname}</span>
                     <span className="Prenom">Prénom : {user.firstname}</span>
                     <span className="Email">E-mail : {user.email}</span>
                 </div>
-                {/* ********** */}
-                {/* Dernier test passe par l'user */}
-                <div className="infoTest" onClick={() => SET_MODAL_VISIBLE()}>
-                    <span>Dernier test: </span>
-                    <span>langage</span>
-                    <span>niveau</span>
-                    <span>score</span>
-                    <span>date</span>
-                </div>
-                {/* ********** */}
-                {/* Touts les tests */}
                 <table className="table">
                     <thead>
                         <tr>
@@ -38,17 +48,16 @@ const HistoriqueUser = ({ state, CHANGE_DASH, SET_MODAL_VISIBLE }) => {
                     <tbody>
                         {userTest.map((test, i) => {
                             return (
-                                <tr onClick={() => SET_MODAL_VISIBLE(test.id_test)}>
-                                    <td>{test.langage}</td>
-                                    <td>{test.niveau}</td>
-                                    <td> 50%</td>
-                                    <td >{test.date}</td>
+                                <tr key={i} onClick={() => SET_MODAL_VISIBLE({ test, user })}>
+                                    <td>{test.language}</td>
+                                    <td>{test.level}</td>
+                                    <td >{test.score}</td>
+                                    <td >{test.response_date === null ? "pas encore passé" : test.response_date}</td>
                                 </tr>
                             )
                         })}
                     </tbody>
                 </table>
-                {/* ********** */}
             </div>
         </div>
     )
