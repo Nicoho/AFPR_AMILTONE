@@ -8,10 +8,10 @@ const HeaderModal = ({ test, user }) => {
                 <h1>Details du test</h1>
             </div>
             <div className="DetailsInfo">
-                <span>Date : {test.date}</span>
-                <span>Langage : {test.langage}</span>
-                <span>Niveau :{test.niveau}</span>
-                <span>Score : score</span>
+                <span>Date : {test.response_date}</span>
+                <span>Langage : {test.language}</span>
+                <span>Niveau :{test.level}</span>
+                <span>Score :{test.score}</span>
                 <span>Nom : {user.lastname}</span>
                 <span>Prenom : {user.firstname}</span>
             </div>

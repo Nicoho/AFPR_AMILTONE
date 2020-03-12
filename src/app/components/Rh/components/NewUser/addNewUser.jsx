@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import "./add.styles.scss"
 import addLogo from "../../../../../img/add.svg"
+import Axios from 'axios';
 
-const AddNewUser = ({ ADD_NEW_USER }) => {
+const AddNewUser = () => {
     const [state, setState] = useState({
         firstname: "",
         lastname: "",
         email: "",
-        langage: "",
-        niveau: "",
     })
 
     const handleChange = (type, value) => {
@@ -22,19 +21,13 @@ const AddNewUser = ({ ADD_NEW_USER }) => {
             case "email":
                 setState({ ...state, email: value })
                 break
-            case "langage":
-                setState({ ...state, langage: value })
-                break
-            case "niveau":
-                setState({ ...state, niveau: value })
-                break
             default:
                 break;
         }
     }
 
     const handleSubmit = () => {
-        ADD_NEW_USER(state)
+        Axios.post(`http://192.168.1.52:5000/users`, state)
         setState({
             firstname: "",
             lastname: "",
@@ -57,22 +50,6 @@ const AddNewUser = ({ ADD_NEW_USER }) => {
                     </div>
                     <div className="form-group">
                         <input type="email" placeholder="Email *" value={state.email} onChange={(e) => handleChange("email", e.target.value)} />
-                    </div>
-                    <div className="form-group">
-                        <select value={state.langage} onChange={(e) => handleChange("langage", e.target.value)}  >
-                            <option >Langage</option>
-                            <option>React</option>
-                            <option>HTML</option>
-                            <option>CSS</option>
-                        </select>
-                    </div>
-                    <div className="form-group">
-                        <select value={state.niveau} onChange={(e) => handleChange("niveau", e.target.value)}  >
-                            <option >Niveau</option>
-                            <option>Junior</option>
-                            <option>Intermediaire</option>
-                            <option>Senior</option>
-                        </select>
                     </div>
                     <div className="btn" onClick={() => handleSubmit()} >
                         <span><img alt="add" src={addLogo} /></span>
