@@ -41,11 +41,11 @@ function App() {
               state.isLog ? (
                 <MyRoute logOut={role => switchRoute(role)} role={state.role} />
               ) : (
-                <Login switchRoute={role => switchRoute(role)} />
-              )
+                  <Login switchRoute={role => switchRoute(role)} />
+                )
             }
           ></Route>
-          <Route path="/user">
+          <Route path="/user/:id_user/test/:id_test/result/:id_result">
             <Userindex />
           </Route>
         </Switch>

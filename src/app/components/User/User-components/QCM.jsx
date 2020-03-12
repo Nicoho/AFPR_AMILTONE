@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { setCheckedPossibilities } from '../../../../reducers/user.reducer/reducer';
 
-function QuestionSimple({ question, ValidateResponse }) {
+function QCM({ question, ValidateResponse }) {
   const [Answers, setAnswers] = useState([])
   const [Sol, setSol] = useState([])
 
   useEffect(() => {
-    setSol(setCheckedPossibilities(question.possibilite))
-  }, [question.possibilite])
+    setSol(setCheckedPossibilities(question.propositions))
+  }, [question.propositions])
 
 
   const getChecked = (ind, answer) => {
@@ -29,17 +29,17 @@ function QuestionSimple({ question, ValidateResponse }) {
   }
 
   return (
-    <div className='QuestionSimple'>
+    <div className='QCM'>
       <form >
         <div className='reponses'>
           {
             Sol.map((answer, ind) => {
               return (
-                <div key={answer.id_possibilite} className='answer_check'>
+                <div key={answer.id_propositions} className='answer_check' >
                   <label className='answer_label'>
-                    <input type='checkbox' className="answer_input" checked={Sol[ind].isChecked} onChange={() => getChecked(ind, answer.possibilite)}
+                    <input type='checkbox' className="answer_input" checked={Sol[ind].isChecked} onChange={() => getChecked(ind, answer.id_propositions)}
                     />
-                    <span className={answer.isChecked ? "answerChecked-text" : "answer_text"} > {answer.possibilite}</span>
+                    <span className={answer.isChecked ? "answerChecked-text" : "answer_text"} > {answer.wording}</span>
                   </label>
                 </div>
               )
@@ -59,4 +59,4 @@ function QuestionSimple({ question, ValidateResponse }) {
   )
 }
 
-export default QuestionSimple
+export default QCM;

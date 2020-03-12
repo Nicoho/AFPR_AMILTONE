@@ -2,7 +2,7 @@ import React from 'react';
 
 import Chrono from './Chrono'
 import QuestionLibre from './QuestionLibre';
-import QuestionSimple from './QuestionSimple'
+import QCM from './QCM'
 
 
 
@@ -10,9 +10,9 @@ function Questionnaire({ test, ValidateResponse }) {
 
 
 
-
   let question = test.questions[test.indexQuestion]
-  let type = question.type
+  let type = question.question_type
+
 
   return (
     <div className='Questionnaire container-fluid'>
@@ -23,7 +23,7 @@ function Questionnaire({ test, ValidateResponse }) {
           </div>
           <div className='question_title'>
             {
-              question.question
+              question.wording_q
             }
           </div >
         </div>
@@ -36,10 +36,10 @@ function Questionnaire({ test, ValidateResponse }) {
           </div>
           <div className="answers">
             {
-              type === 'libre' && <QuestionLibre ValidateResponse={(answer, visible) => ValidateResponse(answer, visible)} />}
+              type === 'libre' && <QuestionLibre ValidateResponse={(answer, visible) => ValidateResponse(answer, visible)} id_propo={question.propositions[0].id_propositions} />}
 
             {
-              type === 'simple' && <QuestionSimple question={question} ValidateResponse={(answer, visible) => ValidateResponse(answer, visible)} />
+              type === 'qcm' && <QCM question={question} ValidateResponse={(answer, visible) => ValidateResponse(answer, visible)} />
             }
           </div>
         </div>

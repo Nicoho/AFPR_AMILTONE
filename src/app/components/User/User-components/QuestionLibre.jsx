@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function QuestionLibre({ ValidateResponse }) {
+function QuestionLibre({ ValidateResponse, id_propo }) {
   const [rep, setRep] = useState('')
 
   useEffect(() => {
@@ -18,7 +18,7 @@ function QuestionLibre({ ValidateResponse }) {
         <div className='reponses'>
           <input value={rep} onChange={e => getAnswer(e)} />
         </div>
-        <div className="btn" onClick={(e) => ValidateResponse(rep, false)}>
+        <div className="btn" onClick={(e) => ValidateResponse({ id_propositions: id_propo, value: rep }, false)}>
           <div className="isBtn">
             <span>
               valider la réponse
