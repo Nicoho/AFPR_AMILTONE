@@ -1,29 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios'
 import "./historique.styles.scss"
+import { getUser, getUserResult } from '../../../../../reducers/rh.reducer/reducer';
 import { back, down } from "../../../../../img/icon/logo"
+
 const HistoriqueUser = ({ state, CHANGE_DASH, SET_MODAL_VISIBLE }) => {
     let [localState, setLocalState] = useState({
         result: [],
         user: []
     })
 
+
     useEffect(() => {
-        Axios.all([getUser(), getUserResult()])
+        Axios.all([getUser(state.userID), getUserResult(state.userID)])
             .then(Axios.spread((user, res) => {
                 setLocalState({ user: user.data[0], result: res.data })
             }));
     }, [state.userID])
 
-    // recupere les info user
-    const getUser = () => {
-        return Axios.get(`http://192.168.1.52:5000/users/${state.userID}`);
-    }
-
-    // recupere tout les resultat user
-    const getUserResult = () => {
-        return Axios.get(`http://192.168.1.52:5000/users/${state.userID}/result`);
-    }
     const user = localState.user
     const userTest = localState.result
     return (

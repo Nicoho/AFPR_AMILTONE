@@ -8,7 +8,7 @@ import Userindex from "./components/User/Userindex";
 function App() {
   const [state, setState] = useState({
     isLog: true,
-    role: "rh"
+    role: "admin"
   });
 
   const switchRoute = role => {
