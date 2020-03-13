@@ -28,7 +28,6 @@ const QuestionnaireInit
     let handlePageChange = () => {
       page === 1 ? setPage(2) : setPage(1)
     }
-    console.log((state));
 
     const navigateInTest = () => {
       if (state.indexQuestion === state.questions.length - 1) {

@@ -114,16 +114,20 @@
           }
           .answer_title {
             font-size: 30px;
-            text-decoration: underline;
-            padding-bottom: 20px;
+            padding-bottom: 5px;
             padding-left: 20px;
+          }
+          .ChoixMultiple_text {
+            margin-left: 20px;
+            margin-bottom: 10px;
           }
           .answers {
             padding-left: 20px;
             border-left: 1px solid #e5e5e5;
             height: 56vh;
+            margin-top: 10px;
 
-            .QCM,
+            .ChoixMultiple,
             .QuestionLibre {
               form {
                 display: flex;
@@ -164,6 +168,45 @@
                     width: 200px;
                     font-size: 20px;
                   }
+                }
+              }
+            }
+
+            .ChoixUnique {
+              .propositions {
+                display: flex;
+                flex-direction: column;
+                height: 45vh;
+                .proposition_label {
+                  width: 98%;
+                  background-color: #ededed;
+                  padding-left: 10px;
+                  height: 40px;
+                  cursor: pointer;
+
+                  .proposition_input {
+                    margin-top: 14px;
+                    margin-right: 10px;
+                  }
+
+                  .proposition_text {
+                    font-weight: 100;
+                    font-size: 20px;
+                  }
+                  .propoChecked-text {
+                    font-weight: 700;
+
+                    font-size: 20px;
+                  }
+                }
+              }
+              .btn {
+                display: flex;
+                justify-content: flex-end;
+                .isBtn {
+                  @include btn-blue;
+                  width: 200px;
+                  font-size: 20px;
                 }
               }
             }
