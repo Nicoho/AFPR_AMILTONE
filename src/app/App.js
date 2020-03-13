@@ -19,7 +19,6 @@ function App() {
       case "admin":
         setState({ role: "admin", isLog: true });
         break;
-
       case "logout":
         setState({ role: "", isLog: false });
         break;

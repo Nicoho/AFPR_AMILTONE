@@ -14,7 +14,6 @@ const CreeQuestion = () => {
     })
 
     const handleChange = (type, value) => {
-        console.log("Swithc ", type, value)
         switch (type) {
             case "type":
                 setState({ ...state, typeQuestion: value })
@@ -44,8 +43,6 @@ const CreeQuestion = () => {
                 break;
         }
     }
-
-    console.log(state)
 
     return (
         <div className="CreeQuestion container-fluid">

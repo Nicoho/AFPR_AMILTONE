@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./add.styles.scss"
 import addLogo from "../../../../../img/add.svg"
 import Axios from 'axios';
-
+import { getTest } from '../../../../utils/utils.user'
 const AddNewUser = () => {
     const [state, setState] = useState({
         firstname: "",
@@ -27,7 +27,7 @@ const AddNewUser = () => {
     }
 
     const handleSubmit = () => {
-        Axios.post(`http://192.168.1.52:5000/users`, state)
+        Axios.post(`${getTest}users`, state)
         setState({
             firstname: "",
             lastname: "",
