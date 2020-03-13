@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { setCheckedPossibilities } from '../../../../reducers/user.reducer/reducer';
 
-function QCM({ question, ValidateResponse }) {
+function ChoixMultiple({ question, ValidateResponse }) {
   const [Answers, setAnswers] = useState([])
   const [Sol, setSol] = useState([])
 
@@ -29,7 +29,7 @@ function QCM({ question, ValidateResponse }) {
   }
 
   return (
-    <div className='QCM'>
+    <div className='ChoixMultiple'>
       <form >
         <div className='reponses'>
           {
@@ -59,4 +59,4 @@ function QCM({ question, ValidateResponse }) {
   )
 }
 
-export default QCM;
+export default ChoixMultiple;
