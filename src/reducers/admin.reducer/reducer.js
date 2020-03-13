@@ -1,5 +1,8 @@
+import axios from 'axios';
+import { getTest } from '../../app/utils/utils.user'
+
 const initialState = {
-  dashbord: "listTest"
+  dashbord: "listQuestion"
 };
 
 const admin = (state, action) => {
@@ -11,4 +14,11 @@ const admin = (state, action) => {
   }
 };
 
-export { initialState, admin };
+const getQuestions = (callback) => {
+  axios.get(`${getTest}questions`)
+    .then(res => callback(res.data))
+    .catch(err => console.log('err', err))
+}
+
+
+export { initialState, admin, getQuestions };
