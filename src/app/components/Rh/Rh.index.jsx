@@ -45,9 +45,6 @@ const Rh = ({ logOut }) => {
                         <span><img alt="add" src={listAdd} /></span>
                         <span>Ajouter un candidat</span>
                     </div>
-                    <div className="btn logout" onClick={() => logOut("logout")} >
-                        <span>Déconnexion</span>
-                    </div>
                 </div>
                 {
                     state.dashbord === "list" &&
@@ -55,6 +52,7 @@ const Rh = ({ logOut }) => {
                     <ListUser
                         CHANGE_DASH={(view) => CHANGE_DASH(view)}
                         GET_ID_USER={(userId) => GET_ID_USER(userId)}
+                        logOut={() => logOut("logout")}
                     />
                 }
                 {
@@ -70,6 +68,7 @@ const Rh = ({ logOut }) => {
                         state={state}
                         CHANGE_DASH={(view) => CHANGE_DASH(view)}
                         SET_MODAL_VISIBLE={({ test, user }) => SET_MODAL_VISIBLE({ test, user })}
+                        logOut={() => logOut("logout")}
                     />
                 }
                 <Modal state={state} CLOSE_MODAL={() => CLOSE_MODAL()} />
