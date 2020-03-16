@@ -8,6 +8,7 @@ const AddNewUser = () => {
         firstname: "",
         lastname: "",
         email: "",
+        err: false
     })
 
     const handleChange = (type, value) => {
@@ -27,14 +28,19 @@ const AddNewUser = () => {
     }
 
     const handleSubmit = () => {
-        Axios.post(`${getTest}users`, state)
-        setState({
-            firstname: "",
-            lastname: "",
-            email: "",
-            langage: "Langage",
-            niveau: "Niveau",
-        })
+        if (state.firstname !== "" && state.lastname !== "" && state.email !== "") {
+            Axios.post(`${getTest}users`, state).then(
+                res => res.data === "user déja inscrit" ?
+                    setState({ ...state, err: true }) :
+                    setState({
+                        firstname: "",
+                        lastname: "",
+                        email: "",
+                        err: false
+                    })
+            )
+
+        }
     }
 
     return (
@@ -51,6 +57,7 @@ const AddNewUser = () => {
                     <div className="form-group">
                         <input type="email" placeholder="Email *" value={state.email} onChange={(e) => handleChange("email", e.target.value)} />
                     </div>
+                    {state.err && <li className="list-group-item list-group-item-danger infoErr">Cette adresse email est déja enregistrer </li>}
                     <div className="btn" onClick={() => handleSubmit()} >
                         <span><img alt="add" src={addLogo} /></span>
                         <span>Ajouter le candidat</span>

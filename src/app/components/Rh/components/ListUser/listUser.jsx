@@ -20,14 +20,18 @@ const ListUser = ({ CHANGE_DASH, GET_ID_USER, logOut }) => {
             setIcon(value)
             :
             setIcon("")
+        filter_sort(value)
     }
 
     useEffect(() => {
+        get_all_user()
+    }, [modal.edit])
+
+    const get_all_user = () => {
         Axios.get(`${getTest}users`).then(res => {
             setLocalState(res.data);
         });
-
-    }, [modal.edit])
+    }
 
     // change la vue en historique et passe l'id user pour recupere tout les result
     const getUserDetails = (userId) => {
@@ -46,8 +50,10 @@ const ListUser = ({ CHANGE_DASH, GET_ID_USER, logOut }) => {
 
     const edit = (i, user) => {
         if (modal.edit !== "") {
-
             Axios.put(`${getTest}users`, modal.update);
+            setInterval(() => {
+                get_all_user()
+            }, 10);
             setModal({ ...modal, edit: "" })
         } else {
 
@@ -64,6 +70,11 @@ const ListUser = ({ CHANGE_DASH, GET_ID_USER, logOut }) => {
         }
     }
 
+    const filter_sort = (value) => {
+        Axios.get(`${getTest}users/sort/${value}`).then(
+            res => setLocalState(res.data)
+        )
+    }
 
     return (
         <div className="register-list">
@@ -89,9 +100,9 @@ const ListUser = ({ CHANGE_DASH, GET_ID_USER, logOut }) => {
             <table className="table table-fixed table-striped table-borderless">
                 <thead>
                     <tr>
-                        <th onClick={() => rotateIcon("Nom")} >Nom <img src={icon !== "Nom" ? down : up} alt="down" width="16px" /></th>
-                        <th onClick={() => rotateIcon("Prénom")}>Prénom <img src={icon !== "Prénom" ? down : up} alt="down" width="16px" /></th>
-                        <th onClick={() => rotateIcon("E-mail")}>E-mail <img src={icon !== "E-mail" ? down : up} alt="down" width="16px" /></th>
+                        <th onClick={() => rotateIcon("lastname")} >Nom <img src={icon !== "lastname" ? down : up} alt="down" width="16px" /></th>
+                        <th onClick={() => rotateIcon("firstname")}>Prénom <img src={icon !== "firstname" ? down : up} alt="down" width="16px" /></th>
+                        <th onClick={() => rotateIcon("email")}>E-mail <img src={icon !== "email" ? down : up} alt="down" width="16px" /></th>
                         <th>
                             Action
                         </th>
@@ -102,14 +113,20 @@ const ListUser = ({ CHANGE_DASH, GET_ID_USER, logOut }) => {
                         return (
                             <tr key={i} id={i}>
                                 <td>
-                                    {modal.edit === i ? <input type="text" placeholder={modal.update.lastname} onChange={(e, type) => handleChange(e.target.value, "lastname")} /> : <span onClick={() => getUserDetails(user.id_users)}>{user.lastname}</span>}
+                                    {modal.edit === i ?
+                                        <input type="text" placeholder={modal.update.lastname} onChange={(e, type) => handleChange(e.target.value, "lastname")} /> :
+                                        <span onClick={() => getUserDetails(user.id_users)}>{user.lastname}</span>}
                                 </td>
                                 <td>
-                                    {modal.edit === i ? <input type="text" placeholder={modal.update.firstname} onChange={(e, type) => handleChange(e.target.value, "firstname")} /> : <span onClick={() => getUserDetails(user.id_users)}>{user.firstname}</span>}
+                                    {modal.edit === i ?
+                                        <input type="text" placeholder={modal.update.firstname} onChange={(e, type) => handleChange(e.target.value, "firstname")} /> :
+                                        <span onClick={() => getUserDetails(user.id_users)}>{user.firstname}</span>}
 
                                 </td>
                                 <td >
-                                    {modal.edit === i ? <input type="text" placeholder={modal.update.email} onChange={(e, type) => handleChange(e.target.value, "email")} /> : <span onClick={() => getUserDetails(user.id_users)}>{user.email}</span>}
+                                    {modal.edit === i ?
+                                        <input type="text" placeholder={modal.update.email} onChange={(e, type) => handleChange(e.target.value, "email")} /> :
+                                        <span onClick={() => getUserDetails(user.id_users)}>{user.email}</span>}
                                 </td>
                                 <td>
                                     <span className="btn" onClick={() => OPEN_MODAL(user.id_users)}>
