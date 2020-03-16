@@ -62,6 +62,8 @@ const QuestionnaireInit
           return 'erreur d affichage'
       }
     }
+
+
     return (
 
       <div className="QuestionnaireInit
