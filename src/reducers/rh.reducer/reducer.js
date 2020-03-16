@@ -1,3 +1,6 @@
+import Axios from "axios";
+import { getTest } from "../../app/utils/utils.user";
+
 const initialState = {
   dashbord: "list",
   modalVisibel: false,
@@ -24,4 +27,14 @@ const rh = (state, action) => {
   }
 };
 
-export { initialState, rh };
+// recupere les info user
+const getUser = userID => {
+  return Axios.get(`${getTest}users/${userID}`);
+};
+
+// recupere tout les resultat user
+const getUserResult = userID => {
+  return Axios.get(`${getTest}users/${userID}/result`);
+};
+
+export { initialState, rh, getUser, getUserResult };

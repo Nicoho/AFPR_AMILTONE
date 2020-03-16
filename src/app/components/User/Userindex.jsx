@@ -8,13 +8,14 @@ import QuestionnaireInit from './User-components/QuestionnaireInit';
 import TestErreur from './User-components/TestErreur';
 
 const UserIndex = () => {
-  const [isStarted, setIsStarted] = useState(1);
+  const [isStarted, setIsStarted] = useState(0);
+  //remplacer inititalisation à 1
   const { id_result } = useParams()
 
 
-  useEffect(() => {
-    IsStartedCheck(id_result, callback => { setIsStarted(callback) })
-  }, [id_result])
+  // useEffect(() => {
+  //   IsStartedCheck(id_result, callback => { setIsStarted(callback) })
+  // }, [id_result])
 
   console.log('isStated', isStarted);
 

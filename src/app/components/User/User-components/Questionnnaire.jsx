@@ -2,7 +2,8 @@ import React from 'react';
 
 import Chrono from './Chrono'
 import QuestionLibre from './QuestionLibre';
-import QCM from './QCM'
+import ChoixMultiple from './ChoixMultiple'
+import ChoixUnique from './ChoixUnique';
 
 
 
@@ -32,14 +33,21 @@ function Questionnaire({ test, ValidateResponse }) {
             <Chrono ValidateResponse={(answer, visible) => ValidateResponse(answer, visible)} timer={test.timer} indexQuestion={test.indexQuestion} />
           </div>
           <div className='answer_title'>
-            Votre (vos) réponse(s):
+            Votre réponse:
           </div>
+          {
+            type === 'cm' && <div className='ChoixMultiple_text'>Plusieurs réponses sont attendues</div>
+          }
+
           <div className="answers">
             {
-              type === 'libre' && <QuestionLibre ValidateResponse={(answer, visible) => ValidateResponse(answer, visible)} id_propo={question.propositions[0].id_propositions} />}
+              type === 'libre' && <QuestionLibre ValidateResponse={(answer, visible) => ValidateResponse(answer, visible)} question={question} />}
 
             {
-              type === 'qcm' && <QCM question={question} ValidateResponse={(answer, visible) => ValidateResponse(answer, visible)} />
+              type === 'cm' && <ChoixMultiple question={question} ValidateResponse={(answer, visible) => ValidateResponse(answer, visible)} />
+            }
+            {
+              type === 'cu' && <ChoixUnique question={question} ValidateResponse={(answer, visible) => ValidateResponse(answer, visible)} />
             }
           </div>
         </div>
