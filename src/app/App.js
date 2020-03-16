@@ -19,9 +19,6 @@ function App() {
       case "admin":
         setState({ role: "admin", isLog: true });
         break;
-      case "user":
-        setState({ role: "user", isLog: true });
-        break;
       case "logout":
         setState({ role: "", isLog: false });
         break;
@@ -41,8 +38,8 @@ function App() {
               state.isLog ? (
                 <MyRoute logOut={role => switchRoute(role)} role={state.role} />
               ) : (
-                  <Login switchRoute={role => switchRoute(role)} />
-                )
+                <Login switchRoute={role => switchRoute(role)} />
+              )
             }
           ></Route>
           <Route path="/user/:id_user/test/:id_test/result/:id_result">

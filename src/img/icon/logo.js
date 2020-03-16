@@ -1,4 +1,4 @@
 import back from "./back.svg";
 import down from "./down.svg";
-
-export { back, down };
+import up from "./up.svg";
+export { back, down, up };

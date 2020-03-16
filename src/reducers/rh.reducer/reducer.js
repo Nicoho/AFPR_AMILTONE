@@ -1,5 +1,5 @@
-import Axios from 'axios'
-
+import Axios from "axios";
+import { getTest } from "../../app/utils/utils.user";
 
 const initialState = {
   dashbord: "list",
@@ -28,13 +28,13 @@ const rh = (state, action) => {
 };
 
 // recupere les info user
-const getUser = (userID) => {
-  return Axios.get(`http://192.168.1.52:5000/users/${userID}`);
+const getUser = userID => {
+  return Axios.get(`${getTest}users/${userID}`);
 };
 
 // recupere tout les resultat user
-const getUserResult = (userID) => {
-  return Axios.get(`http://192.168.1.52:5000/users/${userID}/result`);
-}
+const getUserResult = userID => {
+  return Axios.get(`${getTest}users/${userID}/result`);
+};
 
 export { initialState, rh, getUser, getUserResult };
