@@ -41,7 +41,7 @@ function Questionnaire({ test, ValidateResponse }) {
 
           <div className="answers">
             {
-              type === 'libre' && <QuestionLibre ValidateResponse={(answer, visible) => ValidateResponse(answer, visible)} id_propo={question.propositions[0].id_propositions} />}
+              type === 'libre' && <QuestionLibre ValidateResponse={(answer, visible) => ValidateResponse(answer, visible)} question={question} />}
 
             {
               type === 'cm' && <ChoixMultiple question={question} ValidateResponse={(answer, visible) => ValidateResponse(answer, visible)} />

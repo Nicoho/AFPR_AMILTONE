@@ -6,13 +6,18 @@ const ChoixUnique = ({ question, ValidateResponse }) => {
 
   const [optionSelected, setOptionSelected] = useState('')
   // const [ChoixUnique, setChoixUnique] = useState('');
-  const { propositions } = question
+
 
   const handleOptionChange = e => {
     setOptionSelected(e.target.value)
   }
-  console.log('os', optionSelected)
 
+  const { id_questions, question_type, propositions } = question
+  const answer = {
+    id_questions: id_questions,
+    question_type: question_type,
+    id_propositions: optionSelected,
+  }
   return (
     <div className="ChoixUnique">
       <form>
@@ -36,7 +41,7 @@ const ChoixUnique = ({ question, ValidateResponse }) => {
             })
           }
         </div>
-        <div className="btn" onClick={() => ValidateResponse(optionSelected, false)}>
+        <div className="btn" onClick={() => ValidateResponse(answer, false)}>
           <div className="isBtn">
             <span>
               valider la réponse

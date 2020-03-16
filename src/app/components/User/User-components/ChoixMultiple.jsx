@@ -24,8 +24,17 @@ function ChoixMultiple({ question, ValidateResponse }) {
   }
 
   const checkSubmit = () => {
-    ValidateResponse(Answers, false)
+    ValidateResponse(answer, false)
     setAnswers([])
+  }
+
+
+
+  const { id_questions, question_type } = question
+  const answer = {
+    id_questions: id_questions,
+    question_type: question_type,
+    id_propositions: Answers,
   }
 
   return (
