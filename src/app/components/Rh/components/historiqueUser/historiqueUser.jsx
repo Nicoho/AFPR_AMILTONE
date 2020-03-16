@@ -32,8 +32,8 @@ const HistoriqueUser = ({ state, CHANGE_DASH, SET_MODAL_VISIBLE, logOut }) => {
     }, [state.userID])
 
     const filter_sort = (value) => {
-        Axios.get(`${getTest}users/sort/${value}`).then(
-            res => setLocalState(res.data)
+        Axios.get(`${getTest}users/sort/${value}/result`).then(
+            res => setLocalState(({ ...localState, result: res.data }))
         )
     }
 
