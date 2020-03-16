@@ -13,7 +13,7 @@ const TestSend = ({ isVisible, id_user, CLOSE_MODAL }) => {
 
   useEffect(() => {
     get_all_test()
-  });
+  }, []);
 
   const get_all_test = () => {
     Axios.get(`${getTest}tests`).then(res =>
