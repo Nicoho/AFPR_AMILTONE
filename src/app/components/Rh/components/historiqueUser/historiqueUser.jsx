@@ -3,6 +3,8 @@ import Axios from 'axios'
 import "./historique.styles.scss"
 import { getUser, getUserResult } from '../../../../../reducers/rh.reducer/reducer';
 import { back, down, up } from "../../../../../img/icon/logo"
+import { format_date } from '../../../../utils/utils.generic';
+import { getTest } from '../../../../utils/utils.user';
 
 const HistoriqueUser = ({ state, CHANGE_DASH, SET_MODAL_VISIBLE, logOut }) => {
     let [localState, setLocalState] = useState({
@@ -11,13 +13,16 @@ const HistoriqueUser = ({ state, CHANGE_DASH, SET_MODAL_VISIBLE, logOut }) => {
         icon: ""
     })
 
+    const user = localState.user
+    let userTest = localState.result
+
     const rotateIcon = (value) => {
         localState.icon === "" ?
             setLocalState({ ...localState, icon: value })
             :
             setLocalState({ ...localState, icon: "" })
+        filter_sort(value)
     }
-
 
     useEffect(() => {
         Axios.all([getUser(state.userID), getUserResult(state.userID)])
@@ -26,8 +31,12 @@ const HistoriqueUser = ({ state, CHANGE_DASH, SET_MODAL_VISIBLE, logOut }) => {
             }));
     }, [state.userID])
 
-    const user = localState.user
-    const userTest = localState.result
+    const filter_sort = (value) => {
+        Axios.get(`${getTest}users/sort/${value}`).then(
+            res => setLocalState(res.data)
+        )
+    }
+
     return (
         <div className="details">
             <div className="dashbord">
@@ -56,9 +65,9 @@ const HistoriqueUser = ({ state, CHANGE_DASH, SET_MODAL_VISIBLE, logOut }) => {
                     <thead>
                         <tr>
                             <th onClick={() => rotateIcon("language")}>Langage <img src={localState.icon !== "language" ? down : up} alt="down" width="16px" /></th>
-                            <th onClick={() => rotateIcon("niveau")}>Niveau  <img src={localState.icon !== "niveau" ? down : up} alt="down" width="16px" /></th>
+                            <th onClick={() => rotateIcon("level")}>Niveau  <img src={localState.icon !== "level" ? down : up} alt="down" width="16px" /></th>
                             <th onClick={() => rotateIcon("score")}>Score <img src={localState.icon !== "score" ? down : up} alt="down" width="16px" /></th>
-                            <th onClick={() => rotateIcon("date")}>Date <img src={localState.icon !== "date" ? down : up} alt="down" width="16px" /></th>
+                            <th onClick={() => rotateIcon("response_date")}>Date <img src={localState.icon !== "response_date" ? down : up} alt="down" width="16px" /></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -68,7 +77,7 @@ const HistoriqueUser = ({ state, CHANGE_DASH, SET_MODAL_VISIBLE, logOut }) => {
                                     <td>{test.language}</td>
                                     <td>{test.level}</td>
                                     <td >{test.score}</td>
-                                    <td >{test.response_date === null ? "pas encore passé" : test.response_date}</td>
+                                    <td >{test.language === null ? "pas encore passé" : format_date(test.response_date)}</td>
                                 </tr>
                             )
                         })}
